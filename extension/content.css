@@ -78,3 +78,92 @@
   letter-spacing: 0.03em !important;
   text-shadow: 0 0 8px rgba(167, 139, 250, 0.6) !important;
 }
+
+/* Selection rewrite toolbar */
+.wryte-rewrite-toolbar {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  max-width: min(420px, calc(100vw - 16px)) !important;
+  padding: 8px 10px 10px !important;
+  background: rgba(10, 8, 22, 0.96) !important;
+  border: 1px solid rgba(139, 92, 246, 0.45) !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.55),
+    0 0 20px rgba(139, 92, 246, 0.18) !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  animation: wryte-fade-in 0.15s ease-out !important;
+  pointer-events: auto !important;
+  box-sizing: border-box !important;
+}
+
+.wryte-rewrite-label {
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: rgba(196, 181, 253, 0.65) !important;
+  margin-bottom: 6px !important;
+}
+
+.wryte-rewrite-hint {
+  font-size: 10px !important;
+  line-height: 1.35 !important;
+  color: rgba(148, 163, 184, 0.95) !important;
+  margin: -3px 0 8px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.wryte-rewrite-buttons {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+
+.wryte-rewrite-btn {
+  appearance: none !important;
+  margin: 0 !important;
+  padding: 5px 10px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: #e2e8f0 !important;
+  background: rgba(139, 92, 246, 0.18) !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 0.15s, border-color 0.15s !important;
+}
+
+.wryte-rewrite-btn:hover {
+  background: rgba(139, 92, 246, 0.32) !important;
+  border-color: rgba(167, 139, 250, 0.65) !important;
+}
+
+.wryte-rewrite-btn:active {
+  transform: scale(0.98) !important;
+}
+
+.wryte-rewrite-toast {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  bottom: 24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  padding: 10px 16px !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  background: rgba(10, 8, 22, 0.94) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(139, 92, 246, 0.45) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45) !important;
+  pointer-events: none !important;
+  animation: wryte-fade-in 0.15s ease-out !important;
+}
+
+.wryte-rewrite-toast.wryte-rewrite-error {
+  border-color: rgba(248, 113, 113, 0.55) !important;
+  color: #fecaca !important;
+}
