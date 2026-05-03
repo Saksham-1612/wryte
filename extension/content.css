@@ -1,0 +1,80 @@
+@keyframes wryte-fade-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Ghost text overlay — pointer-events none, purely visual */
+.wryte-inline-ghost-container {
+  position: fixed !important;
+  pointer-events: none !important;
+  z-index: 2147483646 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.wryte-inline-suggestion {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+  animation: wryte-fade-in 0.15s ease-out !important;
+  background-color: transparent !important;
+  white-space: nowrap !important;
+}
+
+/* Tab-hint badge — always shown when a suggestion is ready */
+.wryte-tab-hint {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 4px 8px 4px 11px !important;
+  background: rgba(10, 8, 22, 0.92) !important;
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.07) 0%, transparent 60%) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(139, 92, 246, 0.45) !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  font-size: 12px !important;
+  color: #e2e8f0 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  animation: wryte-fade-in 0.12s ease-out !important;
+  white-space: nowrap !important;
+  max-width: 300px !important;
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.12),
+    0 4px 20px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(139, 92, 246, 0.22) !important;
+  user-select: none !important;
+}
+
+.wryte-tab-hint:hover {
+  border-color: rgba(167, 139, 250, 0.7) !important;
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.2),
+    0 4px 24px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(139, 92, 246, 0.35) !important;
+}
+
+.wryte-tab-hint-text {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  color: rgba(196, 181, 253, 0.75) !important;
+  max-width: 200px !important;
+  font-style: italic !important;
+}
+
+.wryte-tab-hint-kbd {
+  background: rgba(139, 92, 246, 0.2) !important;
+  border-radius: 6px !important;
+  padding: 1px 7px !important;
+  font-size: 11px !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  color: #c4b5fd !important;
+  border: 1px solid rgba(139, 92, 246, 0.45) !important;
+  flex-shrink: 0 !important;
+  letter-spacing: 0.03em !important;
+  text-shadow: 0 0 8px rgba(167, 139, 250, 0.6) !important;
+}

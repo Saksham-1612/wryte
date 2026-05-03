@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Wryte",
+  "version": "1.0",
+  "description": "AI-powered inline autocomplete using OpenRouter models.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://openrouter.ai/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Wryte Settings"
+  }
+}
