@@ -1,5 +1,8 @@
 const MODEL = 'qwen/qwen-2.5-7b-instruct';
 
+/** Wryte FastAPI backend (no trailing slash). */
+const API_BASE = 'https://wryte-zbg5.onrender.com';
+
 console.log('[Wryte] background service worker started');
 
 // LRU cache: domain|fieldType|text → completion (max 50 entries)
@@ -74,7 +77,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 async function handleRewrite(text, style) {
   console.log('[Wryte] rewrite:', style, text?.length);
   try {
-    const response = await fetch("http://127.0.0.1:8000/rewrite", {
+    const response = await fetch(`${API_BASE}/rewrite`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text, style })
@@ -88,14 +91,14 @@ async function handleRewrite(text, style) {
     return data.text ? { text: data.text } : { error: "No rewritten text returned." };
   } catch (error) {
     console.error('[Wryte] rewrite fetch failed:', error.message);
-    return { error: "Failed to connect to backend. Is it running on port 8000?" };
+    return { error: 'Failed to reach the Wryte backend. Check that the API is up and your network allows it.' };
   }
 }
 
 async function handleCompletion(text, url, fieldType) {
   console.log('[Wryte] fetching completion for:', JSON.stringify(text));
   try {
-    const response = await fetch("http://127.0.0.1:8000/autocomplete", {
+    const response = await fetch(`${API_BASE}/autocomplete`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -122,6 +125,6 @@ async function handleCompletion(text, url, fieldType) {
       : { error: "No completion returned from backend." };
   } catch (error) {
     console.error('[Wryte] fetch failed:', error.message);
-    return { error: "Failed to connect to backend. Is it running on port 8000?" };
+    return { error: 'Failed to reach the Wryte backend. Check that the API is up and your network allows it.' };
   }
 }
