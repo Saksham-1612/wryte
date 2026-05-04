@@ -1,5 +1,8 @@
+import asyncio
 import os
 import re
+import urllib.request
+from contextlib import asynccontextmanager
 from typing import Dict, Optional
 from urllib.parse import urlparse
 from fastapi import FastAPI, HTTPException
@@ -13,7 +16,28 @@ from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
-app = FastAPI(title="Wryte Backend")
+_SELF_URL = "https://wryte-zbg5.onrender.com/health"
+_PING_INTERVAL = 10  # seconds
+
+
+async def _keep_alive():
+    while True:
+        await asyncio.sleep(_PING_INTERVAL)
+        try:
+            loop = asyncio.get_event_loop()
+            await loop.run_in_executor(None, urllib.request.urlopen, _SELF_URL)
+        except Exception:
+            pass
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    task = asyncio.create_task(_keep_alive())
+    yield
+    task.cancel()
+
+
+app = FastAPI(title="Wryte Backend", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
