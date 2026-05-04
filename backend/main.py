@@ -23,6 +23,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.get("/health")
+async def health():
+    """Liveness probe for load balancers and platforms (e.g. Render, Docker)."""
+    return {"status": "ok", "service": "wryte-backend"}
+
+
 class AutocompleteRequest(BaseModel):
     text: str
     model: str = "qwen/qwen-2.5-7b-instruct"

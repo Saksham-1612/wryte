@@ -4,3 +4,4 @@ langchain==0.2.14
 langchain-openai==0.1.22
 python-dotenv==1.0.1
 pydantic==2.8.2
+gunicorn==22.0.0
